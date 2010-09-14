@@ -304,7 +304,10 @@ EOF
       end
       gems.sort!.uniq!
       gem_files = []
+      
+      puts "=== Detected RubyGems:" unless Ocra.quiet or gems.empty?
       gems.each do |gempath, fullgemname|
+        puts "  #{fullgemname}" unless Ocra.quiet
         gemspecpath = File.join(gempath, "specifications", fullgemname + ".gemspec")
         @gemspecs << gemspecpath
         spec = Gem::Specification.load(gemspecpath)
